@@ -7,6 +7,7 @@ public class LineHint : MonoBehaviour
     private CircleCollider2D ballPointCollider;
     private Vector3 mousePos = new Vector3();
     private Vector2 OffsetPoint = new Vector2();
+    public bool ShootButtonPressed = false;
     public Vector3 GetMousePosition() {return mousePos;}
     
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class LineHint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && !ShootButtonPressed)
         {
             Ray mPosFix = Camera.main.ScreenPointToRay(Input.mousePosition); // From Screen to World Position ray
             float xMouse = mPosFix.origin.x - transform.position.x;
@@ -33,7 +34,7 @@ public class LineHint : MonoBehaviour
             mousePos = new Vector3(xMouse, yMouse, 0); // Set Offset to get more accurate
         }
 
-        if (Input.touchCount == 1)
+        if (Input.touchCount == 1 && !ShootButtonPressed)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)

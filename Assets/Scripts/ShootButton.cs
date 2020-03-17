@@ -19,6 +19,7 @@ public class ShootButton : MonoBehaviour
             brickContainer.SpawnBricks();
             GameObject.Find("GameManager").GetComponent<GameManager>().round++;
             GameObject.Find("GameManager").GetComponent<GameManager>().ballCount++;
+            lineHint.ShootButtonPressed = false;
         }
     }
 
@@ -30,6 +31,7 @@ public class ShootButton : MonoBehaviour
             Vector3 mousePos = lineHint.GetMousePosition();
             ballContainer.ReleaseBalls(mousePos);
             allBallDestroyed = false;
+            lineHint.ShootButtonPressed = true;
         }
     }
 }
